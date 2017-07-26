@@ -68,7 +68,7 @@ class APIObject(object):
             kw["url"] = self.endpoint
         else:
             operation = kwargs.pop("operation", "")
-            kw["url"] = op.normpath(op.join(self.endpoint, self.name, operation))
+            kw["url"] = op.normpath(op.join(self.endpoint, self.name, operation)).replace("\\", "/")
         params = kwargs.pop("params", None)
         if params is not None:
             query_string = urlencode(params)
